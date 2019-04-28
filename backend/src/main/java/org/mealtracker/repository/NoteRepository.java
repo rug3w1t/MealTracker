@@ -8,7 +8,6 @@ import java.util.Optional;
 @Repository
 public class NoteRepository implements CrudRepository {
 
-
     @Override
     public Object save(Object entity) {
         return null;

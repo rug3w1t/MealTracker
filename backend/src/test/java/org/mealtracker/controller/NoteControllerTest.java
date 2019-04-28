@@ -1,20 +1,10 @@
 package org.mealtracker.controller;
 
-import org.junit.Test;
-import org.mealtracker.model.Note;
-import org.mealtracker.repository.NoteRepository;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-
 public class NoteControllerTest {
 
 
 
-    @Test
+    /*@Test
     public void testSubmitForm() throws Exception {
         NoteRepository mockRepository = mock(NoteRepository.class);
         Note unsavedNote = new Note("test field");
@@ -34,7 +24,7 @@ public class NoteControllerTest {
 
         verify(mockRepository, atLeastOnce()).save(unsavedNote);
 
-    }
+    }*/
 
 
 }
