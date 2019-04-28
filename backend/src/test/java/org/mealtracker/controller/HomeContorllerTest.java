@@ -1,6 +1,7 @@
 package org.mealtracker.controller;
 
 import org.junit.Test;
+import org.mealtracker.model.Note;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -20,11 +21,16 @@ public class HomeContorllerTest {
         assertEquals("home", homeContorller.home() );
     }
 
+    /**
+     * Pełny test metody kontrolera
+     * @throws Exception
+     */
     @Test
     public void testRootHomeAndExpectHomeViewName() throws Exception {
         HomeContorller homeContorller = new HomeContorller();
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(homeContorller).build();
         mockMvc.perform(get("/")).andExpect(view().name("home"));
     }
+
 
 }
