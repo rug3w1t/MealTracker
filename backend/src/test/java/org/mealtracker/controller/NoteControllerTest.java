@@ -2,25 +2,39 @@ package org.mealtracker.controller;
 
 import org.junit.Test;
 import org.mealtracker.model.Note;
+import org.mealtracker.repository.NoteRepository;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 public class NoteControllerTest {
 
 
+
     @Test
     public void testSubmitForm() throws Exception {
-        Note note = new Note(1l, "test filed");
-        NoteController noteController = new NoteController();
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(NoteController.class).build();
+        NoteRepository mockRepository = mock(NoteRepository.class);
+        Note unsavedNote = new Note("test field");
+        Note savedNote = new Note(1l, "test filed");
 
-        mockMvc.perform(post("/processForm"))
+        when(mockRepository.save(unsavedNote)).thenReturn(savedNote);
+
+        NoteController noteController = new NoteController();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(noteController).build();
+
+
+        mockMvc.perform(post("/processForm")
+                .param("text", "test field"))
                 .andExpect(redirectedUrl("/"));
 
+
+
+        verify(mockRepository, atLeastOnce()).save(unsavedNote);
+
     }
+
 
 }
