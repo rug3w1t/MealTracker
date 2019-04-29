@@ -1,13 +1,26 @@
 package org.mealtracker.controller;
 
+import org.junit.Ignore;
+import org.junit.Test;
+import org.mealtracker.model.Note;
+import org.mealtracker.repository.NoteRepository;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 public class NoteControllerTest {
 
 
 
-    /*@Test
+    @Test
+    @Ignore("Nie działa z jakiegoś powodu - do późniejszcej analizay")
+
     public void testSubmitForm() throws Exception {
         NoteRepository mockRepository = mock(NoteRepository.class);
-        Note unsavedNote = new Note("test field");
+        Note unsavedNote = new Note();
         Note savedNote = new Note(1l, "test filed");
 
         when(mockRepository.save(unsavedNote)).thenReturn(savedNote);
@@ -24,7 +37,7 @@ public class NoteControllerTest {
 
         verify(mockRepository, atLeastOnce()).save(unsavedNote);
 
-    }*/
+    }
 
 
 }
