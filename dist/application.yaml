@@ -4,9 +4,9 @@ spring:
     cache: false # pozwala na żywo przełądowywać themy
 
   datasource:
-    url: "jdbc:mysql://localhost:3306/test"
-    username: root
-    password: akyt10
+    url: "jdbc:mysql://localhost:3306/meal_tracker_dev"
+    username: meal
+    password: meal
     pool-size: 30
   jpa:
     show-sql: true

@@ -2,6 +2,7 @@ package org.mealtracker.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.mealtracker.model.Day;
 import org.mealtracker.model.Note;
 import org.mealtracker.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class HomeController {
         List<Note> allNotes = noteRepository.findAll();
         LOG.info("Got all note from db, size : " + allNotes.size());
         theModel.addAttribute("allNotes", allNotes);
+        theModel.addAttribute("dayField", new Day());
         theModel.addAttribute("simpleNote", new Note() );
 
 
