@@ -26,6 +26,7 @@ public class Day {
 
 
     public Day() {
+        this.date = LocalDate.now();
     }
 
     public Long getId() {
