@@ -1,4 +1,0 @@
-spring:
-  thymeleaf:
-    prefix: file:/home/mrr4/mealtracker/app/frontend/templates/
-    cache: false # pozwala na żywo przełądowywać themy

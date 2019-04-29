@@ -1,7 +1,6 @@
 package org.mealtracker.controller;
 
 import org.junit.Test;
-import org.mealtracker.model.Note;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -10,14 +9,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
-public class HomeContorllerTest {
+public class HomeControllerTest {
 
     /*
     * Prosty test zwracania nazwy widoku
     * */
     @Test
     public void testHomePageSimple(){
-     /*   HomeContorller homeContorller = new HomeContorller();
+     /*   HomeController homeContorller = new HomeController();
         assertEquals("home", homeContorller.home() );*/
     }
 
@@ -27,8 +26,8 @@ public class HomeContorllerTest {
      */
     @Test
     public void testRootHomeAndExpectHomeViewName() throws Exception {
-        HomeContorller homeContorller = new HomeContorller();
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(homeContorller).build();
+        HomeController homeController = new HomeController();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(homeController).build();
         mockMvc.perform(get("/")).andExpect(view().name("home"));
     }
 

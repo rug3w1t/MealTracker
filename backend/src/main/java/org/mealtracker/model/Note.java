@@ -1,29 +1,31 @@
 package org.mealtracker.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name = "notes")
 public class Note {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
-    @Lob
-    private String text;
+
+    @Column(name="textFiled")
+    private String textFiled;
 
     public Note(){
 
     }
 
-    public Note(Long id, String text) {
+    public Note(Long id, String textFiled) {
         this.id = id;
-        this.text = text;
+        this.textFiled = textFiled;
     }
 
-    public Note(String  text) {
-        this.text = text;
+    public Note(String textFiled) {
+        this.textFiled = textFiled;
 
     }
 
@@ -35,11 +37,11 @@ public class Note {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getTextFiled() {
+        return textFiled;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTextFiled(String textFiled) {
+        this.textFiled = textFiled;
     }
 }

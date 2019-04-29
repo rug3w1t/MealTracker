@@ -8,11 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-public class HomeContorller {
+public class HomeController {
+
 
     @RequestMapping(value = "/", method = GET)
     String home(Model theModel) {
-        theModel.addAttribute("simpleNote", new Note());
+        theModel.addAttribute("simpleNote", new Note() );
         return "home";
     }
+
+
+
+
+    /*@RequestMapping(value = "/", method = GET)
+    String home(Note simpleNote) {
+        return "home";
+    }*/
 }

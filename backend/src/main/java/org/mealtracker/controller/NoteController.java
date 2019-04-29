@@ -16,13 +16,12 @@ public class NoteController {
     private static  Logger LOG = LogManager.getLogger(NoteController.class);
 
     @Autowired
-    NoteRepository repository;
+    private NoteRepository repository;
 
     @RequestMapping(value = "/processForm", method = RequestMethod.POST)
-    public String saveNote(@ModelAttribute Note simpleNote){
+    public String saveNote(@ModelAttribute("simpleNote") Note simpleNote){
 
-        LOG.debug("Inside NoteController : saveNote() - new note = " + simpleNote.getText());
-
+        LOG.info("Inside NoteController : saveNote() - new note = " + simpleNote.getTextFiled());
         repository.save(simpleNote);
         return "redirect:/";
     }
