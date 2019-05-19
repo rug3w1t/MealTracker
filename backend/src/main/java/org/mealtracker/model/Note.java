@@ -2,6 +2,7 @@ package org.mealtracker.model;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalDate;
 
 
 @Entity
@@ -12,6 +13,7 @@ public class Note {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
+
     @Column(name = "description")
     private String description;
 
@@ -21,10 +23,12 @@ public class Note {
     @Column(name="textFiled")
     private String textFiled;
 
-    @ManyToOne
-    @JoinColumn(name="day_id", nullable=false)
-    private Day day;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name="user_id", nullable=false)
+    private Long userId;
 
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
     public Note(){
 
@@ -65,7 +69,27 @@ public class Note {
         return time;
     }
 
-    public Day getDay() {
-        return day;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 }
