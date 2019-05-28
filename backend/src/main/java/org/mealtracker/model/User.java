@@ -24,4 +24,16 @@ public class User {
     private LocalDateTime registration_date;
 
 
+    public User() {
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -1,8 +1,8 @@
 package org.mealtracker.model;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Entity
@@ -14,14 +14,14 @@ public class Note {
     @Column(name="id")
     private Long id;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "type")
+    private String mealType;
 
     @Column(name = "time")
-    private Time time;
+    private LocalTime time;
 
-    @Column(name="textFiled")
-    private String textFiled;
+    @Column(name="description")
+    private String description;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name="user_id", nullable=false)
@@ -34,13 +34,13 @@ public class Note {
 
     }
 
-    public Note(Long id, String textFiled) {
+    public Note(Long id, String description) {
         this.id = id;
-        this.textFiled = textFiled;
+        this.description = description;
     }
 
-    public Note(String textFiled) {
-        this.textFiled = textFiled;
+    public Note(String description) {
+        this.description = description;
 
     }
 
@@ -52,44 +52,45 @@ public class Note {
         this.id = id;
     }
 
-    public String getTextFiled() {
-        return textFiled;
-    }
-
-    public void setTextFiled(String textFiled) {
-        this.textFiled = textFiled;
-    }
-
-
     public String getDescription() {
         return description;
-    }
-
-    public Time getTime() {
-        return time;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setTime(Time time) {
+    public String getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(String mealType) {
+        this.mealType = mealType;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
