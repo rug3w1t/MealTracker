@@ -23,25 +23,19 @@ public class Note {
     @Column(name="description")
     private String description;
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne()
     @JoinColumn(name="user_id", nullable=false)
-    private Long userId;
+    private User user;
 
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
     public Note(){
-
     }
 
     public Note(Long id, String description) {
         this.id = id;
         this.description = description;
-    }
-
-    public Note(String description) {
-        this.description = description;
-
     }
 
     public Long getId() {
@@ -86,11 +80,11 @@ public class Note {
         return date;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

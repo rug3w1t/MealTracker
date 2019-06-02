@@ -22,10 +22,7 @@ public class NoteController {
 
         LOG.info("Adding new note id :: " + newNote.getId() );
 
-
         noteService.save(newNote);
-
-
 
         return "redirect:/";
 
