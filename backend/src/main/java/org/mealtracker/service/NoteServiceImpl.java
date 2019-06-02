@@ -11,7 +11,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class NoteServiceImpl  implements  NoteService{
@@ -44,6 +49,24 @@ public class NoteServiceImpl  implements  NoteService{
     @Override
     public List<Note> findAll() {
         return noteRepository.findAll();
+    }
+
+    @Override
+    public List<Note> findAllForUser(Long userId) {
+        return noteRepository.findAllForUserId(userId);
+    }
+
+    @Override
+    public Map<LocalDate, List<Note>> findAllForUserAndGroupByDates(Long userId) {
+
+        List<Note> allNotesForUser = findAllForUser(userId);
+        Map<LocalDate, List<Note>> notesGroupedByDate = allNotesForUser.stream()
+                .collect(Collectors.groupingBy(Note::getDate, Collectors.toList()));
+
+
+
+        return  notesGroupedByDate;
+
     }
 
 

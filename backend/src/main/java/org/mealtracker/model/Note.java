@@ -63,6 +63,7 @@ public class Note {
     }
 
     public LocalTime getTime() {
+
         return time;
     }
 

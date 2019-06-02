@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
@@ -23,7 +27,9 @@ public class HomeController {
     String home(Model theModel) {
 
         theModel.addAttribute("note", new Note());
-        theModel.addAttribute("allNotes", noteService.findAll() ) ;
+        theModel.addAttribute("allNotes", noteService.findAllForUser(1L) ) ;
+        Map<LocalDate, List<Note>> groupedNotesByDate = noteService.findAllForUserAndGroupByDates(1L);
+        theModel.addAttribute("groupedNotes",groupedNotesByDate);
         return "home";
     }
 
