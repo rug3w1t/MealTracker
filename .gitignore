@@ -4,3 +4,8 @@ mvnw
 mvnw.cmd
 target/
 dist/dist.iml
+
+backend/hs_err_pid3450.log
+backend/src/main/main.iml
+backend/src/test/test.iml
+
