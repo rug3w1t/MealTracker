@@ -3,6 +3,7 @@ package org.mealtracker.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mealtracker.model.Note;
+import org.mealtracker.model.dto.NoteDto;
 import org.mealtracker.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class HomeController {
 
         theModel.addAttribute("note", new Note());
         theModel.addAttribute("allNotes", noteService.findAllForUser(1L) ) ;
-        Map<LocalDate, List<Note>> groupedNotesByDate = noteService.findAllForUserAndGroupByDates(1L);
+        Map<String, List<NoteDto>> groupedNotesByDate = noteService.findAllForUserAndGroupByDates(1L);
         theModel.addAttribute("groupedNotes",groupedNotesByDate);
         return "home";
     }

@@ -12,4 +12,7 @@ public interface NoteRepository extends JpaRepository<Note, Long> {
 
     @Query(value = "SELECT * FROM notes n WHERE n.user_id=?1", nativeQuery = true)
     List<Note> findAllForUserId(Long id);
+
+    @Query(value = "SELECT * FROM notes n WHERE n.id=?1", nativeQuery = true)
+    Note findOneById(Long id);
 }
