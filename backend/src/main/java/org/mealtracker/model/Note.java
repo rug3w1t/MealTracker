@@ -88,4 +88,17 @@ public class Note {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "id=" + id +
+                ", mealType='" + mealType + '\'' +
+                ", time=" + time +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", date=" + date +
+                '}';
+    }
 }

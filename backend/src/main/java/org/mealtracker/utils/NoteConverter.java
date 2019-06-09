@@ -10,8 +10,32 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 public class NoteConverter {
+
+
+    public static  Note convertFromDTO(NoteDto noteDto)  throws EssentialFieldMissing{
+
+        Note note = new Note();
+
+        String type = noteDto.getMealType();
+        if (! StringUtils.isEmpty(type) ){
+            note.setMealType(type);
+        }
+
+        String description = noteDto.getDescription();
+
+        if ( ! StringUtils.isEmpty(description)){
+            note.setDescription(description);
+        }else {
+            throw  new EssentialFieldMissing("Description cannot be null or empty");
+        }
+
+        return note;
+    }
+
+
 
     public static NoteDto convertFromDao(Note note) throws EssentialFieldMissing {
 

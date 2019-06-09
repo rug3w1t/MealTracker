@@ -8,7 +8,6 @@ import org.mealtracker.model.dto.NoteDto;
 import org.mealtracker.repository.NoteRepository;
 import org.mealtracker.service.user.UserService;
 import org.mealtracker.utils.NoteConverter;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,20 +31,34 @@ public class NoteServiceImpl  implements  NoteService{
 
 
     @Override
-    public void save(Note note) {
-        note.setDate(LocalDate.now());
-        note.setTime(LocalTime.now());
+    public boolean save(NoteDto noteDto) {
 
+        // format to DAO
+        Note note = null;
+        try {
+            note = NoteConverter.convertFromDTO(noteDto);
+        } catch (NoteConverter.EssentialFieldMissing essentialFieldMissing) {
+            essentialFieldMissing.printStackTrace();
+            return false;
+        }
+
+        // assign user to DAO
         User user = userService.getOne(1L);
         if (user !=null){
             note.setUser(userService.getOne(1L));
         }else {
             LOG.error("User wasn't found ");
         }
+        // assign present date to DAO
+        note.setDate(LocalDate.now());
+        // assgin presetn time to DAO
+        note.setTime(LocalTime.now());
 
-        LOG.info("Saving note " + note);
+        LOG.info("Saving note " + note.toString());
+
 
         noteRepository.save(note);
+        return true;
     }
 
     @Override
@@ -61,8 +74,13 @@ public class NoteServiceImpl  implements  NoteService{
             throw new NoSuchElementException();
         }
 
-        NoteDto noteDto = new NoteDto();
-        BeanUtils.copyProperties(note, noteDto);
+        NoteDto noteDto = null;
+        try {
+            noteDto = NoteConverter.convertFromDao(note);
+        } catch (NoteConverter.EssentialFieldMissing essentialFieldMissing) {
+            essentialFieldMissing.getMessage();
+        }
+
         return noteDto;
     }
 

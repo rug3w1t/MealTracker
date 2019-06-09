@@ -9,7 +9,13 @@ import org.mealtracker.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.naming.Binding;
+import javax.validation.Valid;
 
 @Controller
 public class NoteController {
@@ -19,26 +25,33 @@ public class NoteController {
     private NoteService noteService;
 
     @PostMapping("/addNote")
-    public String createNewNote(@ModelAttribute Note newNote){
+    public ModelAndView createNewNote(@Valid NoteDto newNote, BindingResult bindingResult){
 
-        LOG.info("Adding new note id :: " + newNote.getId() );
+        LOG.info("Validating new NoteDTO object  ");
+        ModelMap modelMap = new ModelMap();
+
+        if (bindingResult.hasErrors()){
+            LOG.warn("Form invalid : " + newNote.toString());
+            modelMap.put("formHasErrors", true);
+            return new ModelAndView("redirect:/", modelMap);
+        }
 
         noteService.save(newNote);
-
-        return "redirect:/";
-
+        modelMap.put("formHasErrors", true);
+        return new ModelAndView("redirect:/", modelMap);
     }
 
     @RequestMapping(value = "/updateNote/{noteId}", method = RequestMethod.GET)
     public String showForm( @PathVariable(value="noteId") Long noteId, Model model){
 
         NoteDto noteToUpdate = noteService.findOneById(noteId);
-        LOG.info("noteToUpdae :: " + noteToUpdate);
+        LOG.info("noteToUpdate.time:: " + noteToUpdate.getTime());
 
-        model.addAttribute("note time", noteToUpdate.getTime() );
+        model.addAttribute("note", noteToUpdate );
 
         return "updateForm";
     }
+
 
 }
 

@@ -2,14 +2,20 @@ package org.mealtracker.model.dto;
 
 import org.mealtracker.model.User;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class NoteDto {
 
     private String id;
+
 
     private String mealType;
 
     private String time;
 
+    @NotNull
+    @NotEmpty
     private String description;
 
     private User user;
@@ -74,5 +80,17 @@ public class NoteDto {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "NoteDto{" +
+                "id='" + id + '\'' +
+                ", mealType='" + mealType + '\'' +
+                ", time='" + time + '\'' +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", date='" + date + '\'' +
+                '}';
     }
 }
